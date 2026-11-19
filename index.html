@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EPRP · ኢ.ሕ.አ.ፓ — Ethiopian People's Revolutionary Party</title>
+  <style>
+    :root {
+      --bg: #0f1311;
+      --surface: #181e1b;
+      --surface-2: #202824;
+      --text: #f3f5f4;
+      --muted: #b8c2bc;
+      --gold: #f2c329;
+      --green: #1e8e4e;
+      --red: #d63638;
+      --border: rgba(255, 255, 255, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, "Noto Sans Ethiopic", Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .flag-bar {
+      height: 6px;
+      background: linear-gradient(90deg, var(--green) 0% 33.3%, var(--gold) 33.3% 66.6%, var(--red) 66.6% 100%);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(15, 19, 17, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      background: #ffffff;
+      padding: 3px;
+    }
+
+    .brand-title {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .brand-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 6px 10px;
+      border-radius: 6px;
+    }
+
+    nav a:hover {
+      background: var(--surface-2);
+    }
+
+    .lang-btn {
+      background: var(--gold);
+      color: #111;
+      border: none;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 28px 18px 60px;
+    }
+
+    .hero {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 22px;
+      margin-bottom: 24px;
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-logo {
+      width: 76px;
+      height: 76px;
+      object-fit: contain;
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 6px;
+      border: 2px solid var(--gold);
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(242, 195, 41, 0.14);
+      color: var(--gold);
+      border: 1px solid rgba(242, 195, 41, 0.35);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+
+    h1 {
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.02rem;
+      margin-bottom: 20px;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #111;
+      text-decoration: none;
+      padding: 11px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+
+    .btn-secondary {
+      background: var(--surface-2);
+      color: var(--text);
+      text-decoration: none;
+      padding: 11px 18px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-weight: 600;
+    }
+
+    section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 20px;
+      margin-bottom: 22px;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      margin-top: 14px;
+      margin-bottom: 6px;
+    }
+
+    p {
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    ul {
+      padding-left: 20px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .form-box {
+      background: var(--surface-2);
+      border: 1px dashed rgba(242, 195, 41, 0.5);
+      border-radius: 12px;
+      padding: 18px;
+      margin-top: 12px;
+    }
+
+    .form-link-btn {
+      display: inline-block;
+      margin-top: 10px;
+      background: var(--green);
+      color: #fff;
+      text-decoration: none;
+      padding: 11px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+
+    iframe {
+      width: 100%;
+      min-height: 620px;
+      border: none;
+      border-radius: 10px;
+      background: #fff;
+      margin-top: 14px;
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      padding: 20px 12px 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    footer img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      background: #ffffff;
+      border-radius: 50%;
+      padding: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="flag-bar"></div>
+
+  <header>
+    <div class="brand">
+      <img src="./eprp-logo.jpg" alt="ኢ.ሕ.አ.ፓ / E.P.R.P Logo" />
+      <div>
+        <div class="brand-title" data-am="ኢ.ሕ.አ.ፓ · E.P.R.P" data-en="E.P.R.P · Ethiopian People's Revolutionary Party">ኢ.ሕ.አ.ፓ · E.P.R.P</div>
+        <div class="brand-sub" data-am="የኢትዮጵያ ሕዝባዊ አብዮታዊ ፓርቲ" data-en="Social Democracy · Constitutional Renewal">የኢትዮጵያ ሕዝባዊ አብዮታዊ ፓርቲ</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <nav>
+        <a href="#vision" data-am="ራዕይና እሴቶች" data-en="Vision & Values">ራዕይና እሴቶች</a>
+        <a href="#training" data-am="የስልጠና ይዘት" data-en="Training Guide">የስልጠና ይዘት</a>
+        <a href="#register" data-am="ምዝገባ" data-en="Register">ምዝገባ</a>
+      </nav>
+      <button class="lang-btn" id="langToggle" type="button">EN</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="hero">
+      <div class="hero-top">
+        <img src="./eprp-logo.jpg" alt="የኢ.ሕ.አ.ፓ አርማ" class="hero-logo" />
+        <div class="badge"
+             data-am="የተመሠረተው 1972 (1964 ዓ.ም) · ሰላማዊና ሕጋዊ ማህበራዊ ዴሞክራሲ"
+             data-en="Founded 1972 · Peaceful & Legal Social Democracy">
+          የተመሠረተው 1972 (1964 ዓ.ም) · ሰላማዊና ሕጋዊ ማህበራዊ ዴሞክራሲ
+        </div>
+      </div>
+
+      <h1 data-am="ለሕገ-መንግሥታዊ ዴሞክራሲ፣ ለፍትሕ እና ለጋራ ብልጽግና"
+          data-en="For Constitutional Democracy, Justice, and Shared Prosperity">
+        ለሕገ-መንግሥታዊ ዴሞክራሲ፣ ለፍትሕ እና ለጋራ ብልጽግና
+      </h1>
+
+      <p class="lead"
+         data-am="የኢትዮጵያ ሕዝባዊ አብዮታዊ ፓርቲ (ኢሕአፓ) ለእኩል ዜግነት፣ ለሰላማዊ የዴሞክራሲ ሽግግር፣ ለሕግ የበላይነት፣ ለተጠያቂ አስተዳደር እና ለማህበራዊ ፍትሕ ይታገላል።"
+         data-en="The Ethiopian People's Revolutionary Party (EPRP) stands for equal citizenship, peaceful democratic transition, rule of law, accountable governance, and social justice.">
+        የኢትዮጵያ ሕዝባዊ አብዮታዊ ፓርቲ (ኢሕአፓ) ለእኩል ዜግነት፣ ለሰላማዊ የዴሞክራሲ ሽግግር፣ ለሕግ የበላይነት፣ ለተጠያቂ አስተዳደር እና ለማህበራዊ ፍትሕ ይታገላል።
+      </p>
+
+      <div class="btn-row">
+        <a href="#register" class="btn-primary" data-am="አባል ይሁኑ (ይመዝገቡ)" data-en="Become a Member">አባል ይሁኑ (ይመዝገቡ)</a>
+        <a href="#training" class="btn-secondary" data-am="የፖለቲካ ስልጠና ሰነድ ያንብቡ" data-en="Read Training Manual">የፖለቲካ ስልጠና ሰነድ ያንብቡ</a>
+      </div>
+    </div>
+
+    <section id="vision">
+      <h2 data-am="ራዕይ፣ ተልዕኮ እና መሠረታዊ እሴቶች" data-en="Vision, Mission & Core Values">ራዕይ፣ ተልዕኮ እና መሠረታዊ እሴቶች</h2>
+
+      <div class="grid">
+        <div class="card">
+          <h3 data-am="ራዕይ (Vision)" data-en="Vision">ራዕይ (Vision)</h3>
+          <p data-am="የዜጎች የዴሞክራሲና የሰብዓዊ መብቶች የሚከበሩባት፣ ድህነትና እርዛት የተወገዱባት፣ ሕግ የበላይ የሆነባት፣ ሰላምና ማህበራዊ ፍትሕ የሰፈነባት ዴሞክራሲያዊት ኢትዮጵያን መፍጠር።"
+             data-en="Building a democratic, peaceful, and prosperous Ethiopia where human and democratic rights are respected, poverty is overcome, and the rule of law prevails.">
+            የዜጎች የዴሞክራሲና የሰብዓዊ መብቶች የሚከበሩባት፣ ድህነትና እርዛት የተወገዱባት፣ ሕግ የበላይ የሆነባት፣ ሰላምና ማህበራዊ ፍትሕ የሰፈነባት ዴሞክራሲያዊት ኢትዮጵያን መፍጠር።
+          </p>
+        </div>
+
+        <div class="card">
+          <h3 data-am="ተልዕኮ (Mission)" data-en="Mission">ተልዕኮ (Mission)</h3>
+          <p data-am="አንድነቷ በተጠበቀ ዴሞክራሲያዊት ኢትዮጵያ ውስጥ ነፃ ተቋማት፣ እኩልነት፣ ቅይጥ ማህበራዊ ኢኮኖሚ እና የሕዝብ ጥያቄዎች በሰላማዊና ሕጋዊ መንገድ ምላሽ የሚያገኙበትን ሥርዓት ማስፈን።"
+             data-en="Advancing independent institutions, citizenship equality, mixed social-market economic opportunity, and peaceful democratic representation across Ethiopia.">
+            አንድነቷ በተጠበቀ ዴሞክራሲያዊት ኢትዮጵያ ውስጥ ነፃ ተቋማት፣ እኩልነት፣ ቅይጥ ማህበራዊ ኢኮኖሚ እና የሕዝብ ጥያቄዎች በሰላማዊና ሕጋዊ መንገድ ምላሽ የሚያገኙበትን ሥርዓት ማስፈን።
+          </p>
+        </div>
+
+        <div class="card">
+          <h3 data-am="እሴቶች (Values)" data-en="Core Values">እሴቶች (Values)</h3>
+          <p data-am="እኩልነት፣ ፍትሃዊነት፣ ኃላፊነት፣ ግልጽነት፣ ተጠያቂነት፣ አሳታፊነት እና መከባበር።"
+             data-en="Equality, fairness, responsibility, transparency, accountability, inclusivity, and mutual respect.">
+            እኩልነት፣ ፍትሃዊነት፣ ኃላፊነት፣ ግልጽነት፣ ተጠያቂነት፣ አሳታፊነት እና መከባበር።
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="training">
+      <h2 data-am="የፖለቲካ ስልጠና ሰነድ — ዋና ዋና ይዘቶች" data-en="Political Training Manual — Key Pillars">የፖለቲካ ስልጠና ሰነድ — ዋና ዋና ይዘቶች</h2>
+      <p data-am="ለመሠረታዊ አባላት የተዘጋጀው የስልጠና ማኑዋል ዋና ክፍሎች፦"
+         data-en="Core topics from the members' political training document:">
+        ለመሠረታዊ አባላት የተዘጋጀው የስልጠና ማኑዋል ዋና ክፍሎች፦
+      </p>
+
+      <ul>
+        <li data-am="<strong>የኢሕአፓ ታሪካዊ ዳራና ውርስ፦</strong> ከ1972 (1964 ዓ.ም) ምስረታ ጀምሮ የነበረው የዴሞክራሲ ትግል፣ ስኬቶች፣ ከታሪክ የተወሰዱ ትምህርቶች እና የሰላማዊ መንገድ አቅጣጫ።"
+            data-en="<strong>Historical Legacy & Lessons:</strong> Founding in 1972, democratic struggle, achievements, lessons learned, and transition to peaceful constitutional politics.">
+          <strong>የኢሕአፓ ታሪካዊ ዳራና ውርስ፦</strong> ከ1972 (1964 ዓ.ም) ምስረታ ጀምሮ የነበረው የዴሞክራሲ ትግል፣ ስኬቶች፣ ከታሪክ የተወሰዱ ትምህርቶች እና የሰላማዊ መንገድ አቅጣጫ።
+        </li>
+        <li data-am="<strong>ማህበራዊ ዴሞክራሲ (Social Democracy)፦</strong> የዜግነት ዴሞክራሲ፣ ቅይጥ ኢኮኖሚ፣ የመሬት ባለቤትነትና የአጠቃቀም መብት፣ ተደራሽ ትምህርትና ጤና፣ እና የሠራተኞች ጥበቃ።"
+            data-en="<strong>Social Democracy:</strong> Citizenship-based democracy, mixed economy, land ownership and credit rights, accessible education and healthcare, and workers' rights.">
+          <strong>ማህበራዊ ዴሞክራሲ (Social Democracy)፦</strong> የዜግነት ዴሞክራሲ፣ ቅይጥ ኢኮኖሚ፣ የመሬት ባለቤትነትና የአጠቃቀም መብት፣ ተደራሽ ትምህርትና ጤና፣ እና የሠራተኞች ጥበቃ።
+        </li>
+        <li data-am="<strong>ሕገ-መንግሥታዊና የፌዴራሊዝም ማሻሻያ፦</strong> ገለልተኛ ተቋማት፣ የተመጣጣኝ ውክልና ምርጫ ሥርዓት፣ የሰብዓዊ መብቶች ጥበቃ እና ፍትሐዊ የፌዴራል አወቃቀር።"
+            data-en="<strong>Constitutional & Federal Reform:</strong> Independent institutions, proportional representation, human rights protections, and equitable federalism.">
+          <strong>ሕገ-መንግሥታዊና የፌዴራሊዝም ማሻሻያ፦</strong> ገለልተኛ ተቋማት፣ የተመጣጣኝ ውክልና ምርጫ ሥርዓት፣ የሰብዓዊ መብቶች ጥበቃ እና ፍትሐዊ የፌዴራል አወቃቀር።
+        </li>
+        <li data-am="<strong>ድርጅታዊ ባህልና ውስጠ-ፓርቲ ዴሞክራሲ፦</strong> ግልጽነት፣ የሃሳብ ነፃነት፣ የአብላጫ ድምፅ ውሳኔ፣ የስልጣን ዘመን ገደብ፣ የሴቶች፣ ወጣቶችና አካል ጉዳተኞች ተሳትፎ እና የዲሲፕሊን ሥርዓት።"
+            data-en="<strong>Organizational Culture & Intra-Party Democracy:</strong> Transparency, freedom of expression, majority rule, term limits, inclusion of women, youth, and persons with disabilities, and accountability.">
+          <strong>ድርጅታዊ ባህልና ውስጠ-ፓርቲ ዴሞክራሲ፦</strong> ግልጽነት፣ የሃሳብ ነፃነት፣ የአብላጫ ድምፅ ውሳኔ፣ የስልጣን ዘመን ገደብ፣ የሴቶች፣ ወጣቶችና አካል ጉዳተኞች ተሳትፎ እና የዲሲፕሊን ሥርዓት።
+        </li>
+        <li data-am="<strong>ወቅታዊ ሁኔታ፣ ሰላማዊ ትግል፣ 7ኛው ምርጫና ሀገራዊ ምክክር፦</strong> አመፅ አልባ ሰላማዊ ትግል፣ የአባላት ሚና፣ እና ሁሉን አሳታፊና ገለልተኛ የብሄራዊ ምክክርና እርቅ አስፈላጊነት።"
+            data-en="<strong>Current Context, Peaceful Struggle, 7th Election & National Dialogue:</strong> Non-violent civic action, member responsibilities, and the need for an inclusive, independent national dialogue.">
+          <strong>ወቅታዊ ሁኔታ፣ ሰላማዊ ትግል፣ 7ኛው ምርጫና ሀገራዊ ምክክር፦</strong> አመፅ አልባ ሰላማዊ ትግል፣ የአባላት ሚና፣ እና ሁሉን አሳታፊና ገለልተኛ የብሄራዊ ምክክርና እርቅ አስፈላጊነት።
+        </li>
+      </ul>
+    </section>
+
+    <section id="register">
+      <h2 data-am="የመስመር ላይ አባልነት ምዝገባ (Google Form)" data-en="Online Membership Registration (Google Form)">የመስመር ላይ አባልነት ምዝገባ (Google Form)</h2>
+      <p data-am="የተመዘገቡ ሰዎች ስም እና መረጃ በቀጥታ ወደ Google Form እና Google Sheet እንዲገባ ከታች ያለውን የGoogle Form አገናኝ ያስገቡ።"
+         data-en="Connect your Google Form below so all submitted names and details are saved directly to your Google Form and Google Sheet.">
+        የተመዘገቡ ሰዎች ስም እና መረጃ በቀጥታ ወደ Google Form እና Google Sheet እንዲገባ ከታች ያለውን የGoogle Form አገናኝ ያስገቡ።
+      </p>
+
+      <div class="form-box">
+        <p id="formStatusText"
+           data-am="የGoogle Form አገናኝህን በኮዱ ውስጥ ስታስገባ አዝራሩ እና ቅጹ በቀጥታ ይሰራሉ።"
+           data-en="Once you paste your Google Form link in the code, the registration button and embedded form will activate.">
+          የGoogle Form አገናኝህን በኮዱ ውስጥ ስታስገባ አዝራሩ እና ቅጹ በቀጥታ ይሰራሉ።
+        </p>
+        <a id="googleFormLink" href="#" target="_blank" rel="noopener noreferrer" class="form-link-btn"
+           data-am="የምዝገባ ቅጽ ክፈት (Google Form)" data-en="Open Registration Form (Google Form)">
+          የምዝገባ ቅጽ ክፈት (Google Form)
+        </a>
+        <iframe id="googleFormEmbed" title="EPRP Registration Form"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <img src="./eprp-logo.jpg" alt="ኢ.ሕ.አ.ፓ አርማ" />
+    <span data-am="ኢ.ሕ.አ.ፓ · Ethiopian People's Revolutionary Party — በአማርኛ እና በእንግሊዝኛ"
+          data-en="EPRP · Ethiopian People's Revolutionary Party — Amharic & English">
+      ኢ.ሕ.አ.ፓ · Ethiopian People's Revolutionary Party — በአማርኛ እና በእንግሊዝኛ
+    </span>
+  </footer>
+
+  <script>
+    // የGoogle Form አገናኝህን እዚህ ውስጥ አስገባ (ለምሳሌ: "https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform")
+    const GOOGLE_FORM_URL = "";
+
+    const formLinkEl = document.getElementById("googleFormLink");
+    const formEmbedEl = document.getElementById("googleFormEmbed");
+    const statusTextEl = document.getElementById("formStatusText");
+
+    if (GOOGLE_FORM_URL && GOOGLE_FORM_URL.startsWith("http")) {
+      formLinkEl.href = GOOGLE_FORM_URL;
+      const embedUrl = GOOGLE_FORM_URL.includes("?")
+        ? `${GOOGLE_FORM_URL}&embedded=true`
+        : `${GOOGLE_FORM_URL}?embedded=true`;
+      formEmbedEl.src = embedUrl;
+      formEmbedEl.style.display = "block";
+      statusTextEl.style.display = "none";
+    }
+
+    const toggleBtn = document.getElementById("langToggle");
+    let currentLang = "am";
+
+    toggleBtn.addEventListener("click", () => {
+      currentLang = currentLang === "am" ? "en" : "am";
+      document.documentElement.lang = currentLang;
+      toggleBtn.textContent = currentLang === "am" ? "EN" : "አማርኛ";
+
+      document.querySelectorAll("[data-am][data-en]").forEach((el) => {
+        el.innerHTML = el.getAttribute(`data-${currentLang}`);
+      });
+    });
+  </script>
+</body>
+</html>
