@@ -23,6 +23,10 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: system-ui, -apple-system, "Noto Sans Ethiopic", Segoe UI, Roboto, sans-serif;
       background: var(--bg);
@@ -80,6 +84,13 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
       flex-wrap: wrap;
     }
 
@@ -179,6 +190,11 @@
       font-size: 0.95rem;
     }
 
+    .btn-primary:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+
     .btn-secondary {
       background: var(--surface-2);
       color: var(--text);
@@ -196,6 +212,7 @@
       border-radius: 16px;
       padding: 24px 20px;
       margin-bottom: 22px;
+      scroll-margin-top: 84px;
     }
 
     .section-top {
@@ -271,6 +288,10 @@
       font-size: 0.9rem;
     }
 
+    .fb-link:hover {
+      text-decoration: underline;
+    }
+
     .reg-form {
       background: var(--surface-2);
       border: 1px solid var(--border);
@@ -307,6 +328,11 @@
       color: var(--text);
       font-family: inherit;
       font-size: 0.95rem;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--gold);
     }
 
     textarea {
@@ -566,7 +592,7 @@
     ];
 
     const fbPageLinkEl = document.getElementById("fbPageLink");
-    if (FACEBOOK_PAGE_URL && FACEBOOK_PAGE_URL.startsWith("http")) {
+    if (FACEBOOK_PAGE_URL && FACEBOOK_PAGE_URL.startsWith("https://")) {
       fbPageLinkEl.href = FACEBOOK_PAGE_URL;
       fbPageLinkEl.style.display = "inline-block";
     }
@@ -579,7 +605,7 @@
         const dateText = lang === "en" ? item.dateEn : item.dateAm;
         const titleText = lang === "en" ? item.titleEn : item.titleAm;
         const bodyText = lang === "en" ? item.bodyEn : item.bodyAm;
-        const fbLinkHtml = item.fbUrl && item.fbUrl.startsWith("http")
+        const fbLinkHtml = item.fbUrl && item.fbUrl.startsWith("https://")
           ? `<a href="${item.fbUrl}" target="_blank" rel="noopener noreferrer" class="fb-link">${fbLabel}</a>`
           : "";
         return `
@@ -624,7 +650,20 @@
       e.preventDefault();
       statusEl.className = "status-msg";
 
-      if (!REGISTRATION_ENDPOINT_URL || !REGISTRATION_ENDPOINT_URL.startsWith("http")) {
+      const fullNameInput = document.getElementById("fullName");
+      const contactInput = document.getElementById("contact");
+      const fullName = fullNameInput.value.trim();
+      const contact = contactInput.value.trim();
+
+      if (!fullName || !contact) {
+        statusEl.classList.add("status-err");
+        statusEl.textContent = currentLang === "am"
+          ? "እባክዎ ሙሉ ስም እና ስልክ ወይም ኢሜይል ያስገቡ።"
+          : "Please enter your full name and phone or email.";
+        return;
+      }
+
+      if (!REGISTRATION_ENDPOINT_URL || !REGISTRATION_ENDPOINT_URL.startsWith("https://")) {
         statusEl.classList.add("status-err");
         statusEl.textContent = currentLang === "am"
           ? "የApps Script Web App አገናኝ ገና አልተዋቀረም።"
@@ -635,14 +674,20 @@
       submitBtn.disabled = true;
       statusEl.textContent = currentLang === "am" ? "በመላክ ላይ..." : "Submitting...";
 
-      const formData = new URLSearchParams(new FormData(regForm));
+      const params = new URLSearchParams({
+        fullName,
+        contact,
+        regionCity: document.getElementById("regionCity").value.trim(),
+        interest: document.getElementById("interest").value,
+        notes: document.getElementById("notes").value.trim()
+      });
 
       try {
         await fetch(REGISTRATION_ENDPOINT_URL, {
           method: "POST",
           mode: "no-cors",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: formData.toString()
+          body: params.toString()
         });
 
         regForm.reset();
