@@ -164,6 +164,7 @@
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
+      align-items: center;
     }
 
     .btn-primary {
@@ -193,15 +194,24 @@
       margin-bottom: 22px;
     }
 
+    .section-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
     h2 {
       font-size: 1.35rem;
       color: var(--gold);
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
 
     h3 {
       font-size: 1.05rem;
-      margin-top: 14px;
+      margin-top: 8px;
       margin-bottom: 6px;
     }
 
@@ -232,6 +242,33 @@
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .news-date {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--gold);
+      background: rgba(242, 195, 41, 0.12);
+      border: 1px solid rgba(242, 195, 41, 0.28);
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .fb-link {
+      display: inline-block;
+      margin-top: 8px;
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .fb-link:hover {
+      text-decoration: underline;
     }
 
     .form-box {
@@ -242,9 +279,16 @@
       margin-top: 12px;
     }
 
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 10px;
+    }
+
     .form-link-btn {
       display: inline-block;
-      margin-top: 10px;
       background: var(--green);
       color: #fff;
       text-decoration: none;
@@ -298,6 +342,7 @@
 
     <div class="controls">
       <nav>
+        <a href="#news" data-am="ዜናና ወቅታዊ" data-en="News">ዜናና ወቅታዊ</a>
         <a href="#vision" data-am="ራዕይና እሴቶች" data-en="Vision & Values">ራዕይና እሴቶች</a>
         <a href="#training" data-am="የስልጠና ይዘት" data-en="Training Guide">የስልጠና ይዘት</a>
         <a href="#register" data-am="ምዝገባ" data-en="Register">ምዝገባ</a>
@@ -330,36 +375,55 @@
 
       <div class="btn-row">
         <a href="#register" class="btn-primary" data-am="አባል ይሁኑ (ይመዝገቡ)" data-en="Become a Member">አባል ይሁኑ (ይመዝገቡ)</a>
-        <a href="#training" class="btn-secondary" data-am="የፖለቲካ ስልጠና ሰነድ ያንብቡ" data-en="Read Training Manual">የፖለቲካ ስልጠና ሰነድ ያንብቡ</a>
+        <a href="#news" class="btn-secondary" data-am="ሳምንታዊ ዜናና ማስታወቂያ" data-en="Weekly News & Updates">ሳምንታዊ ዜናና ማስታወቂያ</a>
       </div>
     </div>
+
+    <section id="news">
+      <div class="section-top">
+        <h2 data-am="ዜናና ወቅታዊ መረጃ (News & Updates)" data-en="News & Weekly Updates">ዜናና ወቅታዊ መረጃ (News & Updates)</h2>
+        <a id="fbPageLink" href="#" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="display:none;"
+           data-am="የኢሕአፓ ፌስቡክ ገጽ" data-en="EPRP on Facebook">የኢሕአፓ ፌስቡክ ገጽ</a>
+      </div>
+      <p data-am="ሳምንታዊ መግለጫዎች፣ የውይይት ጥሪዎች እና ድርጅታዊ ማስታወቂያዎች እዚህ ይቀርባሉ።"
+         data-en="Weekly statements, civic discussion notices, and organizational updates are posted here.">
+        ሳምንታዊ መግለጫዎች፣ የውይይት ጥሪዎች እና ድርጅታዊ ማስታወቂያዎች እዚህ ይቀርባሉ።
+      </p>
+      <div class="grid" id="newsGrid"></div>
+    </section>
 
     <section id="vision">
       <h2 data-am="ራዕይ፣ ተልዕኮ እና መሠረታዊ እሴቶች" data-en="Vision, Mission & Core Values">ራዕይ፣ ተልዕኮ እና መሠረታዊ እሴቶች</h2>
 
       <div class="grid">
         <div class="card">
-          <h3 data-am="ራዕይ (Vision)" data-en="Vision">ራዕይ (Vision)</h3>
-          <p data-am="የዜጎች የዴሞክራሲና የሰብዓዊ መብቶች የሚከበሩባት፣ ድህነትና እርዛት የተወገዱባት፣ ሕግ የበላይ የሆነባት፣ ሰላምና ማህበራዊ ፍትሕ የሰፈነባት ዴሞክራሲያዊት ኢትዮጵያን መፍጠር።"
-             data-en="Building a democratic, peaceful, and prosperous Ethiopia where human and democratic rights are respected, poverty is overcome, and the rule of law prevails.">
-            የዜጎች የዴሞክራሲና የሰብዓዊ መብቶች የሚከበሩባት፣ ድህነትና እርዛት የተወገዱባት፣ ሕግ የበላይ የሆነባት፣ ሰላምና ማህበራዊ ፍትሕ የሰፈነባት ዴሞክራሲያዊት ኢትዮጵያን መፍጠር።
-          </p>
+          <div>
+            <h3 data-am="ራዕይ (Vision)" data-en="Vision">ራዕይ (Vision)</h3>
+            <p data-am="የዜጎች የዴሞክራሲና የሰብዓዊ መብቶች የሚከበሩባት፣ ድህነትና እርዛት የተወገዱባት፣ ሕግ የበላይ የሆነባት፣ ሰላምና ማህበራዊ ፍትሕ የሰፈነባት ዴሞክራሲያዊት ኢትዮጵያን መፍጠር።"
+               data-en="Building a democratic, peaceful, and prosperous Ethiopia where human and democratic rights are respected, poverty is overcome, and the rule of law prevails.">
+              የዜጎች የዴሞክራሲና የሰብዓዊ መብቶች የሚከበሩባት፣ ድህነትና እርዛት የተወገዱባት፣ ሕግ የበላይ የሆነባት፣ ሰላምና ማህበራዊ ፍትሕ የሰፈነባት ዴሞክራሲያዊት ኢትዮጵያን መፍጠር።
+            </p>
+          </div>
         </div>
 
         <div class="card">
-          <h3 data-am="ተልዕኮ (Mission)" data-en="Mission">ተልዕኮ (Mission)</h3>
-          <p data-am="አንድነቷ በተጠበቀ ዴሞክራሲያዊት ኢትዮጵያ ውስጥ ነፃ ተቋማት፣ እኩልነት፣ ቅይጥ ማህበራዊ ኢኮኖሚ እና የሕዝብ ጥያቄዎች በሰላማዊና ሕጋዊ መንገድ ምላሽ የሚያገኙበትን ሥርዓት ማስፈን።"
-             data-en="Advancing independent institutions, citizenship equality, mixed social-market economic opportunity, and peaceful democratic representation across Ethiopia.">
-            አንድነቷ በተጠበቀ ዴሞክራሲያዊት ኢትዮጵያ ውስጥ ነፃ ተቋማት፣ እኩልነት፣ ቅይጥ ማህበራዊ ኢኮኖሚ እና የሕዝብ ጥያቄዎች በሰላማዊና ሕጋዊ መንገድ ምላሽ የሚያገኙበትን ሥርዓት ማስፈን።
-          </p>
+          <div>
+            <h3 data-am="ተልዕኮ (Mission)" data-en="Mission">ተልዕኮ (Mission)</h3>
+            <p data-am="አንድነቷ በተጠበቀ ዴሞክራሲያዊት ኢትዮጵያ ውስጥ ነፃ ተቋማት፣ እኩልነት፣ ቅይጥ ማህበራዊ ኢኮኖሚ እና የሕዝብ ጥያቄዎች በሰላማዊና ሕጋዊ መንገድ ምላሽ የሚያገኙበትን ሥርዓት ማስፈን።"
+               data-en="Advancing independent institutions, citizenship equality, mixed social-market economic opportunity, and peaceful democratic representation across Ethiopia.">
+              አንድነቷ በተጠበቀ ዴሞክራሲያዊት ኢትዮጵያ ውስጥ ነፃ ተቋማት፣ እኩልነት፣ ቅይጥ ማህበራዊ ኢኮኖሚ እና የሕዝብ ጥያቄዎች በሰላማዊና ሕጋዊ መንገድ ምላሽ የሚያገኙበትን ሥርዓት ማስፈን።
+            </p>
+          </div>
         </div>
 
         <div class="card">
-          <h3 data-am="እሴቶች (Values)" data-en="Core Values">እሴቶች (Values)</h3>
-          <p data-am="እኩልነት፣ ፍትሃዊነት፣ ኃላፊነት፣ ግልጽነት፣ ተጠያቂነት፣ አሳታፊነት እና መከባበር።"
-             data-en="Equality, fairness, responsibility, transparency, accountability, inclusivity, and mutual respect.">
-            እኩልነት፣ ፍትሃዊነት፣ ኃላፊነት፣ ግልጽነት፣ ተጠያቂነት፣ አሳታፊነት እና መከባበር።
-          </p>
+          <div>
+            <h3 data-am="እሴቶች (Values)" data-en="Core Values">እሴቶች (Values)</h3>
+            <p data-am="እኩልነት፣ ፍትሃዊነት፣ ኃላፊነት፣ ግልጽነት፣ ተጠያቂነት፣ አሳታፊነት እና መከባበር።"
+               data-en="Equality, fairness, responsibility, transparency, accountability, inclusivity, and mutual respect.">
+              እኩልነት፣ ፍትሃዊነት፣ ኃላፊነት፣ ግልጽነት፣ ተጠያቂነት፣ አሳታፊነት እና መከባበር።
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -397,9 +461,9 @@
 
     <section id="register">
       <h2 data-am="የመስመር ላይ አባልነት ምዝገባ (Google Form)" data-en="Online Membership Registration (Google Form)">የመስመር ላይ አባልነት ምዝገባ (Google Form)</h2>
-      <p data-am="የተመዘገቡ ሰዎች ስም እና መረጃ በቀጥታ ወደ Google Form እና Google Sheet እንዲገባ ከታች ያለውን የGoogle Form አገናኝ ያስገቡ።"
-         data-en="Connect your Google Form below so all submitted names and details are saved directly to your Google Form and Google Sheet.">
-        የተመዘገቡ ሰዎች ስም እና መረጃ በቀጥታ ወደ Google Form እና Google Sheet እንዲገባ ከታች ያለውን የGoogle Form አገናኝ ያስገቡ።
+      <p data-am="የተመዘገቡ ሰዎች ስም እና መረጃ በቀጥታ ወደ Google Form እና Google Sheet እንዲገባ የGoogle Form አገናኝ ያስገቡ።"
+         data-en="Connect your Google Form below so submitted member registrations are recorded directly in your linked Google Sheet.">
+        የተመዘገቡ ሰዎች ስም እና መረጃ በቀጥታ ወደ Google Form እና Google Sheet እንዲገባ የGoogle Form አገናኝ ያስገቡ።
       </p>
 
       <div class="form-box">
@@ -408,10 +472,17 @@
            data-en="Once you paste your Google Form link in the code, the registration button and embedded form will activate.">
           የGoogle Form አገናኝህን በኮዱ ውስጥ ስታስገባ አዝራሩ እና ቅጹ በቀጥታ ይሰራሉ።
         </p>
-        <a id="googleFormLink" href="#" target="_blank" rel="noopener noreferrer" class="form-link-btn"
-           data-am="የምዝገባ ቅጽ ክፈት (Google Form)" data-en="Open Registration Form (Google Form)">
-          የምዝገባ ቅጽ ክፈት (Google Form)
-        </a>
+        <div class="form-actions">
+          <a id="googleFormLink" href="#" target="_blank" rel="noopener noreferrer" class="form-link-btn"
+             data-am="የምዝገባ ቅጽ ክፈት (Google Form)" data-en="Open Registration Form (Google Form)">
+            የምዝገባ ቅጽ ክፈት (Google Form)
+          </a>
+          <a id="sheetLinkBtn" href="https://docs.google.com/spreadsheets/d/1pAfbIQbqgLv9beJfXWAYN9sUJzHjwVtRa3n5ijKKQxY/edit?usp=drivesdk"
+             target="_blank" rel="noopener noreferrer" class="btn-secondary"
+             data-am="የምዝገባ መዝገብ (Google Sheet)" data-en="Registration Sheet">
+            የምዝገባ መዝገብ (Google Sheet)
+          </a>
+        </div>
         <iframe id="googleFormEmbed" title="EPRP Registration Form"></iframe>
       </div>
     </section>
@@ -428,6 +499,61 @@
   <script>
     // የGoogle Form አገናኝህን እዚህ ውስጥ አስገባ (ለምሳሌ: "https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform")
     const GOOGLE_FORM_URL = "";
+
+    // የኢሕአፓ ዋና የፌስቡክ ገጽ አገናኝ ካለ እዚህ አስገባ (ለምሳሌ: "https://www.facebook.com/YOUR_PAGE")
+    const FACEBOOK_PAGE_URL = "";
+
+    // ሳምንታዊ ዜናዎችን እዚህ ጨምር ወይም አድስ (አዲሱን ዜና ከላይ አስቀምጥ)
+    const NEWS_ITEMS = [
+      {
+        dateAm: "ህዳር 2019 ዓ.ም",
+        dateEn: "November 2026",
+        titleAm: "የአባልነት ምዝገባና ሳምንታዊ የውይይት መድረክ",
+        titleEn: "Membership Registration & Weekly Civic Forum",
+        bodyAm: "አዳዲስ አባላት እና ደጋፊዎች በመስመር ላይ የምዝገባ ቅጽ በኩል መመዝገብ እና የፖለቲካ ስልጠና ሰነዱን ማንበብ ይችላሉ።",
+        bodyEn: "New members and supporters can register online and review the political training pillars for upcoming weekly discussions.",
+        fbUrl: ""
+      },
+      {
+        dateAm: "ወቅታዊ ማስታወቂያ",
+        dateEn: "Current Notice",
+        titleAm: "ሰላማዊ ትግል፣ ሕግ የበላይነት እና ሀገራዊ ምክክር",
+        titleEn: "Peaceful Struggle, Rule of Law & National Dialogue",
+        bodyAm: "የዴሞክራሲያዊ ሽግግር፣ የተቋማት ነፃነት እና ሁሉን አሳታፊ የምክክር ሂደት ዙሪያ ሳምንታዊ የአቋም መግለጫዎች እዚህ ይለጠፋሉ።",
+        bodyEn: "Weekly notes on democratic transition, institutional independence, and inclusive national dialogue will be posted here.",
+        fbUrl: ""
+      }
+    ];
+
+    const fbPageLinkEl = document.getElementById("fbPageLink");
+    if (FACEBOOK_PAGE_URL && FACEBOOK_PAGE_URL.startsWith("http")) {
+      fbPageLinkEl.href = FACEBOOK_PAGE_URL;
+      fbPageLinkEl.style.display = "inline-block";
+    }
+
+    const newsGridEl = document.getElementById("newsGrid");
+
+    function renderNews(lang) {
+      const fbLabel = lang === "en" ? "View on Facebook →" : "በፌስቡክ ይመልከቱ →";
+      newsGridEl.innerHTML = NEWS_ITEMS.map((item) => {
+        const dateText = lang === "en" ? item.dateEn : item.dateAm;
+        const titleText = lang === "en" ? item.titleEn : item.titleAm;
+        const bodyText = lang === "en" ? item.bodyEn : item.bodyAm;
+        const fbLinkHtml = item.fbUrl && item.fbUrl.startsWith("http")
+          ? `<a href="${item.fbUrl}" target="_blank" rel="noopener noreferrer" class="fb-link">${fbLabel}</a>`
+          : "";
+        return `
+          <article class="card">
+            <div>
+              <span class="news-date">${dateText}</span>
+              <h3>${titleText}</h3>
+              <p>${bodyText}</p>
+            </div>
+            ${fbLinkHtml}
+          </article>
+        `;
+      }).join("");
+    }
 
     const formLinkEl = document.getElementById("googleFormLink");
     const formEmbedEl = document.getElementById("googleFormEmbed");
@@ -446,15 +572,21 @@
     const toggleBtn = document.getElementById("langToggle");
     let currentLang = "am";
 
+    function applyLanguage(lang) {
+      document.documentElement.lang = lang;
+      toggleBtn.textContent = lang === "am" ? "EN" : "አማርኛ";
+      document.querySelectorAll("[data-am][data-en]").forEach((el) => {
+        el.innerHTML = el.getAttribute(`data-${lang}`);
+      });
+      renderNews(lang);
+    }
+
     toggleBtn.addEventListener("click", () => {
       currentLang = currentLang === "am" ? "en" : "am";
-      document.documentElement.lang = currentLang;
-      toggleBtn.textContent = currentLang === "am" ? "EN" : "አማርኛ";
-
-      document.querySelectorAll("[data-am][data-en]").forEach((el) => {
-        el.innerHTML = el.getAttribute(`data-${currentLang}`);
-      });
+      applyLanguage(currentLang);
     });
+
+    applyLanguage(currentLang);
   </script>
 </body>
 </html>
