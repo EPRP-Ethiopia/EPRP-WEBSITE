@@ -174,6 +174,9 @@
       padding: 11px 18px;
       border-radius: 10px;
       font-weight: 700;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
     }
 
     .btn-secondary {
@@ -184,6 +187,7 @@
       border-radius: 10px;
       border: 1px solid var(--border);
       font-weight: 600;
+      font-size: 0.9rem;
     }
 
     section {
@@ -267,44 +271,61 @@
       font-size: 0.9rem;
     }
 
-    .fb-link:hover {
-      text-decoration: underline;
-    }
-
-    .form-box {
+    .reg-form {
       background: var(--surface-2);
-      border: 1px dashed rgba(242, 195, 41, 0.5);
+      border: 1px solid var(--border);
       border-radius: 12px;
       padding: 18px;
       margin-top: 12px;
     }
 
-    .form-actions {
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .field {
       display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-top: 10px;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 12px;
     }
 
-    .form-link-btn {
-      display: inline-block;
-      background: var(--green);
-      color: #fff;
-      text-decoration: none;
-      padding: 11px 18px;
-      border-radius: 10px;
-      font-weight: 700;
+    label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
     }
 
-    iframe {
+    input, select, textarea {
       width: 100%;
-      min-height: 620px;
-      border: none;
-      border-radius: 10px;
-      background: #fff;
-      margin-top: 14px;
-      display: none;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+
+    textarea {
+      min-height: 84px;
+      resize: vertical;
+    }
+
+    .status-msg {
+      margin-top: 12px;
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .status-ok {
+      color: #4ade80;
+    }
+
+    .status-err {
+      color: #f87171;
     }
 
     footer {
@@ -460,31 +481,51 @@
     </section>
 
     <section id="register">
-      <h2 data-am="የመስመር ላይ አባልነት ምዝገባ (Google Form)" data-en="Online Membership Registration (Google Form)">የመስመር ላይ አባልነት ምዝገባ (Google Form)</h2>
-      <p data-am="የተመዘገቡ ሰዎች ስም እና መረጃ በቀጥታ ወደ Google Form እና Google Sheet እንዲገባ የGoogle Form አገናኝ ያስገቡ።"
-         data-en="Connect your Google Form below so submitted member registrations are recorded directly in your linked Google Sheet.">
-        የተመዘገቡ ሰዎች ስም እና መረጃ በቀጥታ ወደ Google Form እና Google Sheet እንዲገባ የGoogle Form አገናኝ ያስገቡ።
+      <h2 data-am="የአባልነት ምዝገባ ቅጽ (Membership Registration)" data-en="Membership Registration">የአባልነት ምዝገባ ቅጽ (Membership Registration)</h2>
+      <p data-am="ስምዎን እና መረጃዎን እዚሁ ድረ-ገጽ ላይ ሞልተው ያስገቡ። መረጃው በቀጥታ ወደ አባላት መዝገብ ይቀመጣል።"
+         data-en="Enter your name and details directly on this page. Your submission is saved to the registration sheet.">
+        ስምዎን እና መረጃዎን እዚሁ ድረ-ገጽ ላይ ሞልተው ያስገቡ። መረጃው በቀጥታ ወደ አባላት መዝገብ ይቀመጣል።
       </p>
 
-      <div class="form-box">
-        <p id="formStatusText"
-           data-am="የGoogle Form አገናኝህን በኮዱ ውስጥ ስታስገባ አዝራሩ እና ቅጹ በቀጥታ ይሰራሉ።"
-           data-en="Once you paste your Google Form link in the code, the registration button and embedded form will activate.">
-          የGoogle Form አገናኝህን በኮዱ ውስጥ ስታስገባ አዝራሩ እና ቅጹ በቀጥታ ይሰራሉ።
-        </p>
-        <div class="form-actions">
-          <a id="googleFormLink" href="#" target="_blank" rel="noopener noreferrer" class="form-link-btn"
-             data-am="የምዝገባ ቅጽ ክፈት (Google Form)" data-en="Open Registration Form (Google Form)">
-            የምዝገባ ቅጽ ክፈት (Google Form)
-          </a>
-          <a id="sheetLinkBtn" href="https://docs.google.com/spreadsheets/d/1pAfbIQbqgLv9beJfXWAYN9sUJzHjwVtRa3n5ijKKQxY/edit?usp=drivesdk"
-             target="_blank" rel="noopener noreferrer" class="btn-secondary"
-             data-am="የምዝገባ መዝገብ (Google Sheet)" data-en="Registration Sheet">
-            የምዝገባ መዝገብ (Google Sheet)
-          </a>
+      <form class="reg-form" id="memberRegForm">
+        <div class="form-grid">
+          <div class="field">
+            <label for="fullName" data-am="ሙሉ ስም *" data-en="Full Name *">ሙሉ ስም *</label>
+            <input type="text" id="fullName" name="fullName" required />
+          </div>
+
+          <div class="field">
+            <label for="contact" data-am="ስልክ ወይም ኢሜይል *" data-en="Phone / Email *">ስልክ ወይም ኢሜይል *</label>
+            <input type="text" id="contact" name="contact" required />
+          </div>
+
+          <div class="field">
+            <label for="regionCity" data-am="ክልል / ከተማ" data-en="Region / City">ክልል / ከተማ</label>
+            <input type="text" id="regionCity" name="regionCity" />
+          </div>
+
+          <div class="field">
+            <label for="interest" data-am="የተሳትፎ ፍላጎት" data-en="Membership Interest">የተሳትፎ ፍላጎት</label>
+            <select id="interest" name="interest">
+              <option value="General Membership" data-am="አጠቃላይ አባልነት" data-en="General Membership">አጠቃላይ አባልነት</option>
+              <option value="Youth / Women / Civic Outreach" data-am="ወጣቶች / ሴቶች / ማህበረሰብ ግንኙነት" data-en="Youth / Women / Civic Outreach">ወጣቶች / ሴቶች / ማህበረሰብ ግንኙነት</option>
+              <option value="Policy & Training" data-am="ፖሊሲና ስልጠና" data-en="Policy & Training">ፖሊሲና ስልጠና</option>
+            </select>
+          </div>
         </div>
-        <iframe id="googleFormEmbed" title="EPRP Registration Form"></iframe>
-      </div>
+
+        <div class="field">
+          <label for="notes" data-am="ተጨማሪ ማስታወሻ" data-en="Notes">ተጨማሪ ማስታወሻ</label>
+          <textarea id="notes" name="notes"></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary" id="submitRegBtn"
+                data-am="ምዝገባ አስገባ" data-en="Submit Registration">
+          ምዝገባ አስገባ
+        </button>
+
+        <div id="regStatus" class="status-msg" aria-live="polite"></div>
+      </form>
     </section>
   </main>
 
@@ -497,21 +538,20 @@
   </footer>
 
   <script>
-    // የGoogle Form አገናኝህን እዚህ ውስጥ አስገባ (ለምሳሌ: "https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform")
-    const GOOGLE_FORM_URL = "";
+    // የGoogle Apps Script Web App አገናኝህን እዚህ አስገባ (ለምሳሌ: "https://script.google.com/macros/s/YOUR_ID/exec")
+    const REGISTRATION_ENDPOINT_URL = "";
 
-    // የኢሕአፓ ዋና የፌስቡክ ገጽ አገናኝ ካለ እዚህ አስገባ (ለምሳሌ: "https://www.facebook.com/YOUR_PAGE")
+    // የኢሕአፓ ዋና የፌስቡክ ገጽ አገናኝ ካለ እዚህ አስገባ
     const FACEBOOK_PAGE_URL = "";
 
-    // ሳምንታዊ ዜናዎችን እዚህ ጨምር ወይም አድስ (አዲሱን ዜና ከላይ አስቀምጥ)
     const NEWS_ITEMS = [
       {
         dateAm: "ህዳር 2019 ዓ.ም",
         dateEn: "November 2026",
         titleAm: "የአባልነት ምዝገባና ሳምንታዊ የውይይት መድረክ",
         titleEn: "Membership Registration & Weekly Civic Forum",
-        bodyAm: "አዳዲስ አባላት እና ደጋፊዎች በመስመር ላይ የምዝገባ ቅጽ በኩል መመዝገብ እና የፖለቲካ ስልጠና ሰነዱን ማንበብ ይችላሉ።",
-        bodyEn: "New members and supporters can register online and review the political training pillars for upcoming weekly discussions.",
+        bodyAm: "አዳዲስ አባላት እና ደጋፊዎች በድረ-ገጹ ላይ በቀጥታ መመዝገብ እና የፖለቲካ ስልጠና ሰነዱን ማንበብ ይችላሉ።",
+        bodyEn: "New members and supporters can register directly on the website and review the political training pillars.",
         fbUrl: ""
       },
       {
@@ -520,7 +560,7 @@
         titleAm: "ሰላማዊ ትግል፣ ሕግ የበላይነት እና ሀገራዊ ምክክር",
         titleEn: "Peaceful Struggle, Rule of Law & National Dialogue",
         bodyAm: "የዴሞክራሲያዊ ሽግግር፣ የተቋማት ነፃነት እና ሁሉን አሳታፊ የምክክር ሂደት ዙሪያ ሳምንታዊ የአቋም መግለጫዎች እዚህ ይለጠፋሉ።",
-        bodyEn: "Weekly notes on democratic transition, institutional independence, and inclusive national dialogue will be posted here.",
+        bodyEn: "Weekly notes on democratic transition, institutional independence, and inclusive national dialogue are posted here.",
         fbUrl: ""
       }
     ];
@@ -555,20 +595,6 @@
       }).join("");
     }
 
-    const formLinkEl = document.getElementById("googleFormLink");
-    const formEmbedEl = document.getElementById("googleFormEmbed");
-    const statusTextEl = document.getElementById("formStatusText");
-
-    if (GOOGLE_FORM_URL && GOOGLE_FORM_URL.startsWith("http")) {
-      formLinkEl.href = GOOGLE_FORM_URL;
-      const embedUrl = GOOGLE_FORM_URL.includes("?")
-        ? `${GOOGLE_FORM_URL}&embedded=true`
-        : `${GOOGLE_FORM_URL}?embedded=true`;
-      formEmbedEl.src = embedUrl;
-      formEmbedEl.style.display = "block";
-      statusTextEl.style.display = "none";
-    }
-
     const toggleBtn = document.getElementById("langToggle");
     let currentLang = "am";
 
@@ -576,7 +602,11 @@
       document.documentElement.lang = lang;
       toggleBtn.textContent = lang === "am" ? "EN" : "አማርኛ";
       document.querySelectorAll("[data-am][data-en]").forEach((el) => {
-        el.innerHTML = el.getAttribute(`data-${lang}`);
+        if (el.tagName === "OPTION") {
+          el.textContent = el.getAttribute(`data-${lang}`);
+        } else {
+          el.innerHTML = el.getAttribute(`data-${lang}`);
+        }
       });
       renderNews(lang);
     }
@@ -584,6 +614,50 @@
     toggleBtn.addEventListener("click", () => {
       currentLang = currentLang === "am" ? "en" : "am";
       applyLanguage(currentLang);
+    });
+
+    const regForm = document.getElementById("memberRegForm");
+    const submitBtn = document.getElementById("submitRegBtn");
+    const statusEl = document.getElementById("regStatus");
+
+    regForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      statusEl.className = "status-msg";
+
+      if (!REGISTRATION_ENDPOINT_URL || !REGISTRATION_ENDPOINT_URL.startsWith("http")) {
+        statusEl.classList.add("status-err");
+        statusEl.textContent = currentLang === "am"
+          ? "የApps Script Web App አገናኝ ገና አልተዋቀረም።"
+          : "Registration endpoint URL is not configured yet.";
+        return;
+      }
+
+      submitBtn.disabled = true;
+      statusEl.textContent = currentLang === "am" ? "በመላክ ላይ..." : "Submitting...";
+
+      const formData = new URLSearchParams(new FormData(regForm));
+
+      try {
+        await fetch(REGISTRATION_ENDPOINT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: formData.toString()
+        });
+
+        regForm.reset();
+        statusEl.classList.add("status-ok");
+        statusEl.textContent = currentLang === "am"
+          ? "ምዝገባዎ በተሳካ ሁኔታ ተልኳል። እናመሰግናለን!"
+          : "Your registration has been submitted. Thank you!";
+      } catch (err) {
+        statusEl.classList.add("status-err");
+        statusEl.textContent = currentLang === "am"
+          ? "በመላክ ላይ ችግር ተፈጥሯል። እባክዎ እንደገና ይሞክሩ።"
+          : "There was a problem submitting your form. Please try again.";
+      } finally {
+        submitBtn.disabled = false;
+      }
     });
 
     applyLanguage(currentLang);
